@@ -31,4 +31,13 @@ public class PalindromeTest {
         assertEquals(1, mee.size());
 
     }
+
+    @Test
+    void nonValidMessageResources() {
+        Set<ConstraintViolation<Foo>> mee = validator.validate(Foo.of("mee"));
+        assertFalse(mee.isEmpty());
+        assertEquals(1, mee.size());
+
+        assertEquals("not valid palindrome", mee.stream().findFirst().get().getMessage());
+    }
 }
